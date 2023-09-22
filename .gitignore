@@ -131,6 +131,7 @@ venv.bak/
 # data
 data/
 data_2/
+caltech256/
 
 # Spyder project settings
 .spyderproject

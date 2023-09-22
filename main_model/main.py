@@ -5,10 +5,9 @@ import os
 
 
 def transform_images(dataset_path, dataset_path_resized):
-    # Erstellen Sie das Ausgabeverzeichnis, wenn es nicht existiert
     os.makedirs(dataset_path_resized, exist_ok=True)
 
-    # Durchlaufen Sie den Caltech-256-Datensatz und schneiden Sie die Bilder auf 256x256 Pixel zu
+    # Durchlaufen Sie den Caltech-256-Datensatz und schneiden der Bilder auf 256x256 Pixel
     for root, _, files in os.walk(dataset_path):
         for file in files:
             file_path = os.path.join(root, file)
@@ -25,10 +24,10 @@ def main():
 
     # transform_images(dataset_path, dataset_path_resized)
 
-    autoencoder = Autoencoder()  # Ihr zuvor definiertes Autoencoder-Modell
+    autoencoder = Autoencoder()
     print(autoencoder)
     trainer = Trainer(autoencoder, path)
-    trainer.train(num_epochs=10)  # Anzahl der Trainings-Epochen anpassen
+    trainer.train(num_epochs=6)
 
 
 if __name__ == "__main__":

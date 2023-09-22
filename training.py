@@ -25,14 +25,13 @@ def train_simple_autoencoder(num_epochs=1):
     criterion = nn.MSELoss()
     optimizer = optim.Adam(autoencoder.parameters(), lr=0.001)
 
-    # Load and preprocess your image dataset (you can replace this with your own dataset loading code)
+    # Load and preprocess the image dataset
     transform = transforms.Compose([transforms.Resize((64, 64)),
                                     transforms.ToTensor()])
 
     # Download a sample dataset (e.g., CIFAR-10) for demonstration
-    dataset = datasets.Caltech101(
-        root='./data_2', transform=transform, download=True)
-    dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
+    dataset = datasets.ImageFolder(root='caltech256', transform=transform)
+    dataloader = DataLoader(dataset, batch_size=64, shuffle=True)
 
     # tensorboard
     writer = SummaryWriter()
@@ -62,9 +61,9 @@ def train_simple_autoencoder(num_epochs=1):
 
         print(f'Epoch [{epoch + 1}/{num_epochs}] Loss: {loss.item():.7f}')
 
-    # Save the trained model
-    torch.save(autoencoder.state_dict(),
-               'autoencoder_001_{}_1909.pth'.format(num_epochs))
+        # Save the trained model
+        torch.save(autoencoder.state_dict(),
+                   'autoencoder_{}_{}_2009.pth'.format(epoch, num_epochs))
     writer.flush()
     writer.close()
     print("Training finished and model saved")

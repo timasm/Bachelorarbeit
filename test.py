@@ -11,7 +11,7 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 def test_simple_autoencoder():
 
     autoencoder = Autoencoder()
-    autoencoder.load_state_dict(torch.load('autoencoder_001_20_1909.pth'))
+    autoencoder.load_state_dict(torch.load('autoencoder_7_20_2009.pth'))
     autoencoder.eval()
 
     # Test the trained autoencoder (you can replace this with your own test images)
