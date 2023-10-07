@@ -1,0 +1,14 @@
+base_model
+
+- verschiedene Interpolations und Upsampling Varianten
+- Aktivierungsfunktion
+- verschiedene Loss Funktionen (Perceptual)
+- Tiefe der Layer 
+- Breite der Layer
+
+- Multiple test datasets
+  - faces
+  - animales
+  - random like nature, cars cities
+  - text
+  - contrast
