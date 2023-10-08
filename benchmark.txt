@@ -1,0 +1,80 @@
+	    {
+            "ae": Autoencoder(),
+            "name": "Autoencoder",
+            "train_path": "trained_models/base_model/",
+            "psnr_path": "np_arr/base_psnr.dat",
+            "ssim_path": "np_arr/base_ssim.dat"
+        },
+
+        {
+            "ae": Autoencoder_Bilinear(),
+            "name": "Autoencoder_Bilinear",
+            "train_path": "trained_models/interpolation_models/bilinear/",
+            "psnr_path": "np_arr/bilinear_psnr.dat",
+            "ssim_path": "np_arr/bilinear_ssim.dat"
+        },
+        {
+            "ae": Autoencoder_convTranspose(),
+            "name": "Autoencoder_convTranspose",
+            "train_path": "trained_models/interpolation_models/convTranspose/",
+            "psnr_path": "np_arr/convTranspose_psnr.dat",
+            "ssim_path": "np_arr/convTranspose_ssim.dat"
+        },
+
+	    {
+            "ae": Autoencoder_LeakyReLU(),
+            "name": "Autoencoder_LeakyReLU",
+            "train_path": "trained_models/activation_models/leakyReLU/",
+            "psnr_path": "np_arr/LeakyReLU_psnr.dat",
+            "ssim_path": "np_arr/LeakyReLU_ssim.dat"
+        },
+        {
+            "ae": Autoencoder_Sigmoid(),
+            "name": "Autoencoder_Sigmoid",
+            "train_path": "trained_models/activation_models/sigmoid/",
+            "psnr_path": "np_arr/Sigmoid_psnr.dat",
+            "ssim_path": "np_arr/Sigmoid_ssim.dat"
+        }
+
+        {
+            "ae": Autoencoder_Deep_1(),
+            "name": "Autoencoder_Deep_1",
+            "train_path": "trained_models/deep_models/deep_1/",
+            "psnr_path": "np_arr/deep1_psnr.dat",
+            "ssim_path": "np_arr/deep1_ssim.dat"
+        },
+        {
+            "ae": Autoencoder_Deep_3(),
+            "name": "Autoencoder_Deep_3",
+            "train_path": "trained_models/deep_models/deep_3/",
+            "psnr_path": "np_arr/deep3_psnr.dat",
+            "ssim_path": "np_arr/deep3_ssim.dat"
+        },
+        {
+            "ae": Autoencoder_Deep_4(),
+            "name": "Autoencoder_Deep_4",
+            "train_path": "trained_models/deep_models/deep_4/",
+            "psnr_path": "np_arr/deep4_psnr.dat",
+            "ssim_path": "np_arr/deep4_ssim.dat"
+        },
+        {
+            "ae": Autoencoder_Deep_5(),
+            "name": "Autoencoder_Deep_5",
+            "train_path": "trained_models/deep_models/deep_5/",
+            "psnr_path": "np_arr/deep5_psnr.dat",
+            "ssim_path": "np_arr/deep5_ssim.dat"
+        },
+        {
+            "ae": Autoencoder_Deep_6(),
+            "name": "Autoencoder_Deep_6",
+            "train_path": "trained_models/deep_models/deep_6/",
+            "psnr_path": "np_arr/deep6_psnr.dat",
+            "ssim_path": "np_arr/deep6_ssim.dat"
+        },
+        {
+            "ae": Autoencoder_Deep_7(),
+            "name": "Autoencoder_Deep_7",
+            "train_path": "trained_models/deep_models/deep_7/",
+            "psnr_path": "np_arr/deep7_psnr.dat",
+            "ssim_path": "np_arr/deep7_ssim.dat"
+        },

@@ -21,6 +21,7 @@ from trainer.mse_loss import Trainer_MSE
 from trainer.vgg19_loss import Trainer_mse_perceputal
 
 from validation_func.tester import Tester
+from validation_func.image_metric import Benchmark
 
 
 import torch
@@ -89,11 +90,11 @@ def train_activation_models(device, dataset_path):
 
 def train_deep_models(device, dataset_path):
     aes = [
-        # {
-        #    "ae": Autoencoder_Deep_1(),
-        #    "name": "Autoencoder_Deep_1",
-        #    "train_path": "trained_models/deep_models/deep_1/"
-        # },
+        {
+            "ae": Autoencoder_Deep_1(),
+            "name": "Autoencoder_Deep_1",
+            "train_path": "trained_models/deep_models/deep_1/"
+        },
         {
             "ae": Autoencoder_Deep_3(),
             "name": "Autoencoder_Deep_3",
@@ -131,11 +132,6 @@ def train_deep_models(device, dataset_path):
 def train_wide_models(device, dataset_path):
     aes = [
         {
-            "ae": Autoencoder_Wide_64(),
-            "name": "Autoencoder_Wide_64",
-            "train_path": "trained_models/wide_models/wide_64/"
-        },
-        {
             "ae": Autoencoder_Wide_128(),
             "name": "Autoencoder_Wide_128",
             "train_path": "trained_models/wide_models/wide_128/"
@@ -158,26 +154,60 @@ def train_perceptual_loss(device, dataset_path):
     pass
 
 
+def benchmark(device, val_dataset):
+    aes = [
+        {
+            "ae": Autoencoder(),
+            "name": "Autoencoder",
+            "train_path": "trained_models/base_model/",
+            "psnr_path": "np_arr/base_psnr.dat",
+            "ssim_path": "np_arr/base_ssim.dat"
+        },
+        {
+            "ae": Autoencoder_Bilinear(),
+            "name": "Autoencoder_Bilinear",
+            "train_path": "trained_models/interpolation_models/bilinear/",
+            "psnr_path": "np_arr/bilinear_psnr.dat",
+            "ssim_path": "np_arr/bilinear_ssim.dat"
+        },
+        {
+            "ae": Autoencoder_convTranspose(),
+            "name": "Autoencoder_convTranspose",
+            "train_path": "trained_models/interpolation_models/convTranspose/",
+            "psnr_path": "np_arr/convTranspose_psnr.dat",
+            "ssim_path": "np_arr/convTranspose_ssim.dat"
+        },
+    ]
+    b = Benchmark(aes, device, val_dataset)
+    # b.run()
+    b.plot_psnr()
+    b.plot_ssim()
+
+
 def main():
     device = check_device()
     train_dataset_path = "dataset/train"
+    val_dataset = "dataset/validation"
 
-    mode = 1
+    mode = 0
     if mode == 0:
         print("Training Mode")
         # train_base_model(device, train_dataset_path)
         # train_interpolation_models(device, train_dataset_path)
         # train_activation_models(device, train_dataset_path)
         # train_deep_models(device, train_dataset_path)
-        # train_wide_models(device, train_dataset_path)
+        train_wide_models(device, train_dataset_path)
     elif mode == 1:
         print("Output Mode")
-        model = Autoencoder_Wide_64()
+        model = Autoencoder_convTranspose()
         model.load_state_dict(torch.load(
-            "trained_models/wide_models/wide_64/060"))
+            "trained_models/interpolation_models/convTranspose/060"))
         model.eval()
         test = Tester(model, (128, 128), "./test.jpg", "")
         test.show_super_resolution_image()
+    else:
+        print("Benchmark Mode")
+        benchmark(device, val_dataset)
 
 
 if __name__ == "__main__":
